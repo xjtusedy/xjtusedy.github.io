@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>幻想乡</title>
+  <subtitle>dingyi&#39;s blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://xjtusedy.github.io/"/>
+  <updated>2017-02-16T07:39:00.000Z</updated>
+  <id>http://xjtusedy.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机图形学实验</title>
+    <link href="http://xjtusedy.github.io/2017/02/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
+    <id>http://xjtusedy.github.io/2017/02/16/计算机图形学实验/</id>
+    <published>2017-02-16T07:36:36.000Z</published>
+    <updated>2017-02-16T07:39:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>#实验人</p>
+<blockquote>
+<p>班级：软件51<br>姓名：丁毅<br>学号：2151601007</p>
+<p>班级：软件51<br>姓名：朱禹宏<br>学号：2151601019</p>
+</blockquote>
+<hr>
+<p>###一.实验目的<br>1 熟悉openGL的简单基本操作<br>2 掌握openGL纹理贴图技术，并绘制出可以转动的地球</p>
+<p>###二.实验环境<br>操作系统：Windows7<br>编程环境：visual studio 2015<br>编程语言：C语言</p>
+<p>###三.实验内容（代码实现）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//初始化光照</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">initLight</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	GLfloat	ambientLight[] = &#123; <span class="number">0.2</span>,<span class="number">0.2</span>,<span class="number">0.2</span>,<span class="number">1</span> &#125;;</div><div class="line">	GLfloat diffuseLight[] = &#123; <span class="number">0.8</span>,<span class="number">.8</span>,<span class="number">0.8</span>,<span class="number">1</span> &#125;;</div><div class="line">	GLfloat specularLight[] = &#123; <span class="number">0.5</span>,<span class="number">0.5</span>,<span class="number">0.5</span>,<span class="number">1</span> &#125;;</div><div class="line">	GLfloat posLight[] = &#123; <span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">1</span> &#125;;</div><div class="line">	GLfloat	specref[] = &#123; <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span> &#125;;</div><div class="line"></div><div class="line">	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);</div><div class="line">	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);</div><div class="line">	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);</div><div class="line">	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);</div><div class="line"></div><div class="line">	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, <span class="number">128</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>载入位图资源：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//载入位图资源</span></div><div class="line"><span class="function">AUX_RGBImageRec *<span class="title">LoadBMP</span><span class="params">(<span class="keyword">char</span> *Filename)</span></span></div><div class="line">&#123;</div><div class="line">	FILE *File = <span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">if</span> (!Filename)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">	&#125;</div><div class="line">	File = fopen(Filename, <span class="string">"r"</span>);</div><div class="line">	<span class="keyword">if</span> (File)</div><div class="line">	&#123;</div><div class="line">		fclose(File);</div><div class="line">		<span class="keyword">return</span> auxDIBImageLoad(Filename);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>位图资源如下：<br><img src="http://static.zybuluo.com/dyxjtuse/22ovpwzqe1vjvtk7aenundvm/earth.bmp" alt="earth.bmp-768.1kB"></p>
+<p>生成纹理：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">int</span> <span class="title">LoadGLTextures</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> Status = FALSE;</div><div class="line">	AUX_RGBImageRec *TextureImage[<span class="number">1</span>];</div><div class="line">	<span class="built_in">memset</span>(TextureImage, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="keyword">void</span> *) * <span class="number">1</span>);<span class="comment">//初始化指针数组</span></div><div class="line"></div><div class="line">	<span class="keyword">if</span> (TextureImage[<span class="number">0</span>] = LoadBMP(<span class="string">"earth.bmp"</span>))</div><div class="line">	&#123;</div><div class="line">		Status = TRUE;</div><div class="line">		glGenTextures(<span class="number">1</span>, &amp;texture[<span class="number">0</span>]);</div><div class="line">		glBindTexture(GL_TEXTURE_2D, texture[<span class="number">0</span>]);</div><div class="line">		glTexImage2D(GL_TEXTURE_2D, <span class="number">0</span>, <span class="number">3</span>, TextureImage[<span class="number">0</span>]-&gt;sizeX, TextureImage[<span class="number">0</span>]-&gt;sizeY, <span class="number">0</span>, GL_RGB, GL_UNSIGNED_BYTE, TextureImage[<span class="number">0</span>]-&gt;data);</div><div class="line">		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</div><div class="line">		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (TextureImage[<span class="number">0</span>])</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (TextureImage[<span class="number">0</span>]-&gt;data)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">free</span>(TextureImage[<span class="number">0</span>]-&gt;data);</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">free</span>(TextureImage[<span class="number">0</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> Status;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>初始化纹理：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//初始化纹理</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">initRendering</span><span class="params">()</span> </span>&#123;</div><div class="line">	_earth = gluNewQuadric();</div><div class="line">	LoadGLTextures();</div><div class="line">	initLight();</div><div class="line">	glEnable(GL_LIGHT0);</div><div class="line">	glEnable(GL_LIGHTING);</div><div class="line">	glEnable(GL_DEPTH_TEST);</div><div class="line">	glEnable(GL_LINE_SMOOTH);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>绘制地球：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//绘制地球</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">drawEarth</span><span class="params">()</span></span></div><div class="line">&#123;	</div><div class="line">	</div><div class="line">	<span class="keyword">static</span> <span class="keyword">bool</span> loaded = <span class="literal">false</span>;</div><div class="line">	glBindTexture(GL_TEXTURE_2D, texture[<span class="number">0</span>]);</div><div class="line">	<span class="keyword">if</span> (!loaded)</div><div class="line">	&#123;</div><div class="line">		glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);</div><div class="line">		glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);</div><div class="line"></div><div class="line">		gluQuadricDrawStyle(_earth, GL_FILL);</div><div class="line">		gluQuadricNormals(_earth, GLU_SMOOTH);</div><div class="line">		gluQuadricTexture(_earth, GL_TRUE);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	glPushMatrix();</div><div class="line">	&#123;</div><div class="line">		glEnable(GL_TEXTURE_2D);</div><div class="line"></div><div class="line">		glRotatef(<span class="number">-90</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">		gluSphere(_earth, <span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</div><div class="line">		glDisable(GL_TEXTURE_2D);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	glPopMatrix();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>绘制屏幕：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//绘制屏幕</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">drawScene</span><span class="params">()</span> </span>&#123;</div><div class="line">	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</div><div class="line"></div><div class="line">	glMatrixMode(GL_MODELVIEW); </div><div class="line">	glLoadIdentity();</div><div class="line"></div><div class="line">	glPushMatrix();</div><div class="line">	glTranslatef(<span class="number">400</span>, <span class="number">240</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line">	glRotatef(_rotX / <span class="number">100</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">	glRotatef(-_rotY / <span class="number">100</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">	glRotatef(_angle, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">	drawEarth();</div><div class="line">	glPopMatrix();</div><div class="line"></div><div class="line">	glutSwapBuffers();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>定义一个变量使地球可以旋转：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">	_angle += <span class="number">2.0f</span>;</div><div class="line">	<span class="keyword">if</span> (_angle &gt; <span class="number">360</span>) &#123;</div><div class="line">		_angle -= <span class="number">360</span>;</div><div class="line">	&#125;</div><div class="line">	glutPostRedisplay();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###四.实验结果<br><img src="http://static.zybuluo.com/dyxjtuse/1gd7g45ipc7ji6k32d4vjhx5/DB7_%60$%7D1Y$T1@JRP%7DPLNT8E.png" alt="DB7_`$}1Y$T1@JRP}PLNT8E.png-172.1kB"></p>
+<p>###五.实验收获<br>1.初步学会了openGL基本操作<br>2.掌握了openGL纹理贴图的方法</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#实验人&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;班级：软件51&lt;br&gt;姓名：丁毅&lt;br&gt;学号：2151601007&lt;/p&gt;
+&lt;p&gt;班级：软件51&lt;br&gt;姓名：朱禹宏&lt;br&gt;学号：2151601019&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;###一.实验目的&lt;
+    
+    </summary>
+    
+    
+      <category term="opengl" scheme="http://xjtusedy.github.io/tags/opengl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>尹扶失恋的133天</title>
+    <link href="http://xjtusedy.github.io/2017/02/14/%E5%B0%B9%E6%89%B6%E5%A4%B1%E6%81%8B%E7%9A%84133%E5%A4%A9/"/>
+    <id>http://xjtusedy.github.io/2017/02/14/尹扶失恋的133天/</id>
+    <published>2017-02-14T11:41:00.000Z</published>
+    <updated>2017-02-14T11:46:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>#尹扶失恋的133天</p>
+<blockquote>
+<p>伟大的心理学家王伟曾经说过：There are mang ways to be NO.1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span><span class="string">"Hello World!"</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#尹扶失恋的133天&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;伟大的心理学家王伟曾经说过：There are mang ways to be NO.1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+    
+    </summary>
+    
+    
+      <category term="失恋" scheme="http://xjtusedy.github.io/tags/%E5%A4%B1%E6%81%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://xjtusedy.github.io/2017/02/12/hello-world/"/>
+    <id>http://xjtusedy.github.io/2017/02/12/hello-world/</id>
+    <published>2017-02-12T11:14:54.000Z</published>
+    <updated>2017-02-12T11:14:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
