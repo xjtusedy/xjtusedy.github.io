@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>%2F2017%2F02%2F17%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[计算机图形学实验]]></title>
       <url>%2F2017%2F02%2F16%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%2F</url>
       <content type="text"><![CDATA[#实验人 ###一.实验目的1 熟悉openGL的简单基本操作2 掌握openGL纹理贴图技术，并绘制出可以转动的地球 ###二.实验环境操作系统：Windows7编程环境：visual studio 2015编程语言：C语言 ###三.实验内容（代码实现）12345678910111213141516//初始化光照void initLight()&#123; GLfloat ambientLight[] = &#123; 0.2,0.2,0.2,1 &#125;; GLfloat diffuseLight[] = &#123; 0.8,.8,0.8,1 &#125;; GLfloat specularLight[] = &#123; 0.5,0.5,0.5,1 &#125;; GLfloat posLight[] = &#123; 5,5,1,1 &#125;; GLfloat specref[] = &#123; 1,1,1,1 &#125;; glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight); glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight); glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight); glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight); glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 128);&#125; 载入位图资源：12345678910111213141516//载入位图资源AUX_RGBImageRec *LoadBMP(char *Filename)&#123; FILE *File = NULL; if (!Filename) &#123; return NULL; &#125; File = fopen(Filename, "r"); if (File) &#123; fclose(File); return auxDIBImageLoad(Filename); &#125; return NULL;&#125; 位图资源如下： 生成纹理：12345678910111213141516171819202122232425 int LoadGLTextures()&#123; int Status = FALSE; AUX_RGBImageRec *TextureImage[1]; memset(TextureImage, 0, sizeof(void *) * 1);//初始化指针数组 if (TextureImage[0] = LoadBMP("earth.bmp")) &#123; Status = TRUE; glGenTextures(1, &amp;texture[0]); glBindTexture(GL_TEXTURE_2D, texture[0]); glTexImage2D(GL_TEXTURE_2D, 0, 3, TextureImage[0]-&gt;sizeX, TextureImage[0]-&gt;sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, TextureImage[0]-&gt;data); glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); &#125; if (TextureImage[0]) &#123; if (TextureImage[0]-&gt;data) &#123; free(TextureImage[0]-&gt;data); &#125; free(TextureImage[0]); &#125; return Status;&#125; 初始化纹理：1234567891011//初始化纹理void initRendering() &#123; _earth = gluNewQuadric(); LoadGLTextures(); initLight(); glEnable(GL_LIGHT0); glEnable(GL_LIGHTING); glEnable(GL_DEPTH_TEST); glEnable(GL_LINE_SMOOTH);&#125; 绘制地球：1234567891011121314151617181920212223242526272829//绘制地球void drawEarth()&#123; static bool loaded = false; glBindTexture(GL_TEXTURE_2D, texture[0]); if (!loaded) &#123; glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); gluQuadricDrawStyle(_earth, GL_FILL); gluQuadricNormals(_earth, GLU_SMOOTH); gluQuadricTexture(_earth, GL_TRUE); &#125; glPushMatrix(); &#123; glEnable(GL_TEXTURE_2D); glRotatef(-90, 1, 0, 0); gluSphere(_earth, 200, 100, 100); glDisable(GL_TEXTURE_2D); &#125; glPopMatrix();&#125; 绘制屏幕：123456789101112131415161718//绘制屏幕void drawScene() &#123; glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); glMatrixMode(GL_MODELVIEW); glLoadIdentity(); glPushMatrix(); glTranslatef(400, 240, 0); glRotatef(_rotX / 100, 0, 1, 0); glRotatef(-_rotY / 100, 1, 0, 0); glRotatef(_angle, 0, 1, 0); drawEarth(); glPopMatrix(); glutSwapBuffers();&#125; 定义一个变量使地球可以旋转：1234567void update(int value) &#123; _angle += 2.0f; if (_angle &gt; 360) &#123; _angle -= 360; &#125; glutPostRedisplay();&#125; ###四.实验结果 ###五.实验收获1.初步学会了openGL基本操作2.掌握了openGL纹理贴图的方法]]></content>
@@ -13,13 +20,6 @@
       <title><![CDATA[尹扶失恋的133天]]></title>
       <url>%2F2017%2F02%2F14%2F%E5%B0%B9%E6%89%B6%E5%A4%B1%E6%81%8B%E7%9A%84133%E5%A4%A9%2F</url>
       <content type="text"><![CDATA[#尹扶失恋的133天 伟大的心理学家王伟曾经说过：There are mang ways to be NO.1 1printf"Hello World!"]]></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>%2F2017%2F02%2F12%2Fhello-world%2F</url>
-      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
     </entry>
 
     
