@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xjtusedy.github.io/tags/index.html</loc>
+    
+    <lastmod>2017-02-17T09:38:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xjtusedy.github.io/categories/index.html</loc>
     
     <lastmod>2017-02-17T09:33:53.000Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://xjtusedy.github.io/sitemap/index.html</loc>
     
     <lastmod>2017-02-14T13:58:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xjtusedy.github.io/tags/index.html</loc>
-    
-    <lastmod>2017-02-14T13:58:40.000Z</lastmod>
     
   </url>
   
