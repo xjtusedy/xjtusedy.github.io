@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>幻想乡</title>
-  <subtitle>dingyi&#39;s blog</subtitle>
+  <subtitle>世界那么大，在此安个家</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xjtusedy.github.io/"/>
@@ -9,7 +9,7 @@
   <id>http://xjtusedy.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>John Diya</name>
     
   </author>
   
